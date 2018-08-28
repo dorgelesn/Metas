@@ -1,0 +1,57 @@
+{% extends "layout.html.twig" %}
+{% block body %}
+
+    <!-- Page Content -->
+    <div class="container">
+
+        {% if event is defined %}
+            <div class="row">
+
+                <div class="col-lg-3">
+                    <h1 class="my-4">Indices clés</h1>
+                    <ul class="list-group">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Thème principale
+                            <strong style="color:red">Fête</strong>
+
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Nombreux de personnes intéressées
+                            <span class="badge badge-primary badge-pill">2</span>
+                        </li>
+
+                    </ul>
+                </div>
+                <!-- /.col-lg-3 -->
+
+                <div class="col-lg-9">
+
+                    <div class="card mt-4">
+                        <img class="card-img-top img-fluid" src="http://placehold.it/900x400" alt="">
+                        <div class="card-body">
+                            <h2 class="card-title" style="text-align:center;">{{ event.titre }}</h2>
+                            <h4>{{ event.dateDepart|date }}</h4>
+                            <p class="card-text"> {{ event.libelle|raw }}</p>
+                            <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
+                            4.0 stars
+                        </div>
+                    </div>
+
+
+                </div>
+                <!-- /.col-lg-9 -->
+
+            </div>
+
+
+            <!-- /.row -->
+            {% else %}
+                <div class="alert alert-info" role="alert">
+                    le détails pour cette evénement n'existe pas!
+                </div>
+        {% endif %}
+
+    </div>
+    <!-- /.container -->
+
+  {% endblock %}

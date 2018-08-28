@@ -1,0 +1,38 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+login_check:
+    path: /login_check
+
+add_check_uv:
+    path: /add_check_uv
+    controller: App\Controller\UvController::add_check
+
+add_mod_uv:
+    path: /add_mod_uv
+    controller: App\Controller\UvController::mod_check
+
+add_check_customer:
+    path: /add_check_customer
+    controller: App\Controller\CustomPageController::add_page
+
+add_mod_customer:
+    path: /add_mod_customer
+    controller: App\Controller\CustomPageController::mod_page
+
+
+add_view:
+     path: /addview
+     controller: App\Controller\ViewController::addview
+
+delete_pratical:
+     path: /page/delete
+     controller: App\Controller\CustomPageController::delete
+
+mod_pratical:
+     path: /page/mod
+     controller: App\Controller\CustomPageController::modify
+
+add_mod_view:
+     path: /addmod
+     controller: App\Controller\ViewController::modview

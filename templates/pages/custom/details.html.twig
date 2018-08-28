@@ -1,0 +1,131 @@
+{% extends "layout.html.twig" %}
+
+{% block body %}
+
+    <!-- Page Content -->
+    <div class="container" >
+
+        {% if course is defined %}
+              <!-- Portfolio Item Heading -->
+              <h1 class="my-4" style="margin-top: 20px ">{{ course.code }} -
+                <small>{{ course.titre }}</small>
+              </h1>
+
+              <!-- Portfolio Item Row -->
+              <div class="row">
+                  <p> {{ course.description }} </p>
+              </div>
+              <!-- /.row -->
+            <div class="row">
+
+                <h3>Avis des étudiants</h3>
+
+            </div>
+
+            <p>
+                {% if is_granted(expression('"ROLE_ADMIN" in roles ')) %}
+                    <a class="btn btn-primary" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Ajouter un nouveau avis</a>
+                {% endif %}
+                 </p>
+        <form method="post" action="{{ path('add_view') }}">
+           <div class="row">
+                <div class="col">
+                    <div class="collapse multi-collapse" id="multiCollapseExample1">
+                        <div class="card card-body" >
+                            <input type="text" name="id" value="{{ course.id }}" style="display: none">
+                            <textarea  name="_viewcontent" placeholder="Ajouter un avis" ></textarea>
+                           <div style="margin-top: 15px;"><input  type="submit" value="Enregister" class="btn btn-primary"></div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </form>
+
+
+        {% if course.views is defined %}
+            <h4> Tous les avis</h4>
+              {% for view in course.views %}
+                  <div style="margin-top: 15px; border: 1px solid black;" class="alert alert-light"><p id="viewct">{{ view.content }}</p>
+                      <div class="row" id="displayview">
+                          {% if is_granted(expression('"ROLE_ADMIN" in roles ')) %}
+
+                              <a href="#" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal" id="{{ 'modview'~ view.id}}" onclick="mod({{ view.id }})">
+                                  modifier
+                                  <input type="text" id="idview" value="{{ view.id }}" style="display: none;">
+                              </a>
+                              <a href="/view/delete?id={{ view.id }}" class="btn btn-danger">suppr</a>
+                          {% endif %}
+                      </div>
+                  </div>
+
+              {% endfor %}
+        {% else %}
+                <div class="alert alert-info" role="alert">Aucun avis renseigné pour cette unité d'enseignement  </div>
+        {% endif %}
+
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Modifer le contenu</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form method="post" action="{{ path('add_mod_view') }}">
+                            <div class="modal-body" >
+                                <input type="text" name="idcourse" value="{{ course.id }}" style="display: none">
+                                <input type="text" name="idviewset" id="idviewset" style="display: none">
+                                <textarea  name="_viewcontent" id="contentview" style="width: 100%;"> test </textarea>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Enregistrer</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+              <!-- /.row -->
+
+              <!-- Related Projects Row -->
+              <h3 class="my-4">Autres informations</h3>
+
+              <div class="row">
+
+
+
+              </div>
+              <!-- /.row -->
+            {% else %}
+                <div class="alert alert-info" role="alert">
+                    le détails pour ce cour n'existe pas!
+                </div>
+        {% endif %}
+
+    </div>
+
+    <script src={{ asset('static/jquery/jquery-3.3.1.min.js')}}></script>
+    <script>
+     function mod(id){
+
+         var texte = $("#viewct").html();
+
+
+         console.log(id);
+         //$("this").text(texte);
+         $("#contentview").html(texte);
+         $("#idviewset").val(id);
+     }
+
+    </script>
+    <!-- /.container -->
+  {% endblock %}

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Mouvement des Etudiants Africains et Sympathisants">
+    <meta name="ptchepga" content="developper fullstrack">
+
+    <title>Metas</title>
+    
+    {% block stylesheets %}
+    <!-- Bootstrap core CSS -->
+    <link href={{ asset('static/bootstrap/css/bootstrap.min.css') }} rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href={{ asset('static/portfolio-item.css') }} rel="stylesheet">
+    {% endblock %}
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">LOGO Metas</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="/">Accueil
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/actu">Actualités</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/partenaire">Partenariat</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/contact">Contact</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+               <img src="{{ asset('static/img/profil.png') }}" alt="profil" />
+              </a>
+              <div class="dropdown-menu">
+                  {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                  <a class="dropdown-item" href="/logout">Déconnexion</a>
+                  {% else %}
+                  <a class="dropdown-item" href="/authentification">Connexion</a>
+                  {% endif %}
+                <div class="dropdown-divider"></div>
+                  {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <a class="dropdown-item" href="/user/space">Espace</a>
+                  {% endif %}
+
+              </div>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div style="margin-top: 55px;">
+        {% for message in app.flashes('notice') %}
+          <div class="alert-primary">
+              {{ message }}
+          </div>
+        {% endfor %}
+
+        {% block body %}{% endblock %}
+    </div>
+    <!-- Page Content -->
+
+    <!-- /.container -->
+
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; METAS 2018</p>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src={{ asset('static/jquery/jquery.min.js')}}></script>
+    <script src={{ asset('static/bootstrap/js/bootstrap.bundle.min.js')}}></script>
+
+  </body>
+
+</html>

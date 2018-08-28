@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Mouvement des Etudiants Africains et Sympathisants">
+  <meta name="ptchepga" content="">
+
+  <title>Metas</title>
+
+    {% block stylesheets %}
+      <!-- Bootstrap core CSS -->
+      <link href={{ asset('static/bootstrap/css/bootstrap.min.css') }} rel="stylesheet">
+
+      <!-- Custom styles for this template -->
+      <link href={{ asset('static/portfolio-item.css') }} rel="stylesheet">
+    {% endblock %}
+</head>
+<body>
+<div class="container">
+
+  {% if course is defined %}
+  <form class="col-4" action="{{ path('add_mod_uv') }}" method="post" style="box-shadow: 0px 0px 20px black; padding: 15px; ">
+    <div class="form-group">
+      <label for="code">Code de l'UV</label>
+      <input type="text" class="form-control" id="code" name="_code" value="{{ course.code }}" aria-describedby="emailHelp" placeholder="Entrer le code de l'unité">
+      <small id="code_help" class="form-text text-muted">Le code de UV présent depuis le Guide des UV.</small>
+    </div>
+    <div class="form-group">
+      <label for="title">Titre</label>
+      <input type="text" class="form-control" id="title-uv"  value="{{ course.titre }}"name="_label" placeholder="Entrer l'intitulé ">
+    </div>
+    <div class="form-group">
+      <label for="title">description</label>
+      <textarea class="form-control" id="title-uv" name="_description" placeholder="Décrire l'unité d'enseignement"  rows="5" >{{ course.description }}</textarea>
+    </div>
+    <input type="text" style="display: none;" class="form-control" id="id"  value="{{ course.id }}" name="id" >
+    <button type="submit" class="btn btn-primary">Enregistrer</button>
+  </form>
+  {% else %}
+  <form class="col-4" action="{{ path('add_check_uv') }}" method="post" style="box-shadow: 0px 0px 20px black; padding: 15px; ">
+    <div class="form-group">
+      <label for="code">Code de l'UV</label>
+      <input type="text" class="form-control" id="code" name="_code" aria-describedby="emailHelp" placeholder="Entrer le code de l'unité">
+      <small id="code_help" class="form-text text-muted">Le code de UV présent depuis le Guide des UV.</small>
+    </div>
+    <div class="form-group">
+      <label for="title">Titre</label>
+      <input type="text" class="form-control" id="title-uv" name="_label" placeholder="Entrer l'intitulé ">
+    </div>
+    <div class="form-group">
+      <label for="title">description</label>
+      <textarea class="form-control" id="title-uv" name="_description" placeholder="Décrire l'unité d'enseignement"  rows="5"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Enregistrer</button>
+  </form>
+  {% endif %}
+</div>
+
+</body>
+</html>
+

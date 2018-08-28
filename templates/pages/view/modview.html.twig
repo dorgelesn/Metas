@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Mouvement des Etudiants Africains et Sympathisants">
+  <meta name="ptchepga" content="">
+
+  <title>Metas</title>
+
+
+</head>
+<body>
+<div class="container">
+
+  {% if pratical is defined %}
+  <form class="col-7" action="{{ path('add_mod_customer') }}" method="post"  style="box-shadow: 0px 0px 20px black; padding: 15px; ">
+
+    <div class="form-group">
+      <label for="title">Contenu de l'information pratique</label>
+      <textarea  name="_description" placeholder="Décrire l'information pratique"   id="editor" >{{ pratical.content }}</textarea>
+    </div>
+    <input type="text" style="display: none;" class="form-control" id="id"  value="{{ pratical.id }}" name="id" >
+    <button type="submit" class="btn btn-primary">Enregistrer </button>
+  </form>
+  {% else %}
+  <form class="col-7" action="{{ path('add_check_customer') }}" method="post" style="box-shadow: 0px 0px 20px black; padding: 15px;" >
+
+    <div class="form-group">
+    <label for="title"><h3>Contenu de l'information pratique</h3></label>
+      <textarea id="editor" name="_description"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Enregistrer</button>
+  </form>
+  {% endif %}
+</div>
+
+</body>
+</html>
+

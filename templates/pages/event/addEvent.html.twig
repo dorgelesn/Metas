@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Mouvement des Etudiants Africains et Sympathisants">
+  <meta name="ptchepga" content="">
+
+  <title>Metas</title>
+
+    {% block stylesheets %}
+      <!-- Bootstrap core CSS -->
+      <link href={{ asset('static/bootstrap/css/bootstrap.min.css') }} rel="stylesheet">
+
+      <!-- Custom styles for this template -->
+      <link href={{ asset('static/portfolio-item.css') }} rel="stylesheet">
+    {% endblock %}
+
+    {% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+</head>
+<body>
+<div class="container">
+
+    {{ form_start(form) }}
+    {{ form_row(form.urlTof) }}
+    {{ form_end(form) }}
+</div>
+<script src="https://cdn.ckeditor.com/ckeditor5/11.0.1/classic/ckeditor.js"></script>
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#event_libelle' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>
+</body>
+</html>
+

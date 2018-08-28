@@ -1,0 +1,54 @@
+{% extends "layout.html.twig" %}
+{% block body %}
+
+    <!-- Page Content -->
+    <div class="container">
+
+        {% if course is defined %}
+              <!-- Portfolio Item Heading -->
+              <h1 class="my-4">{{ course.code }} -
+                <small>{{ course.titre }}</small>
+              </h1>
+
+              <!-- Portfolio Item Row -->
+              <div class="row">
+
+                  <p> {{ course.description }} </p>
+
+
+              </div>
+              <!-- /.row -->
+               <div class="row">
+
+            <p> Avis des anciens étudiants -- <b>pas encore finaliser</b> </p>
+
+
+              </div>
+              <!-- /.row -->
+               <div class="row">
+
+                   <h3>Informations pratiques sur les uv</h3>
+
+
+              </div>
+              <!-- /.row -->
+
+              <!-- Related Projects Row -->
+              <h3 class="my-4">Autres informations</h3>
+
+              <div class="row">
+
+
+
+              </div>
+              <!-- /.row -->
+            {% else %}
+                <div class="alert alert-info" role="alert">
+                    le détails pour ce cour n'existe pas!
+                </div>
+        {% endif %}
+
+    </div>
+    <!-- /.container -->
+
+  {% endblock %}
