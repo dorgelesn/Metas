@@ -1,4 +1,6 @@
 {
+    "name": "metas",
+    "description": "Metas website",
     "type": "project",
     "license": "proprietary",
     "require": {
@@ -60,9 +62,7 @@
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
             "assets:install %PUBLIC_DIR%": "symfony-cmd"
-
         },
-
         "post-update-cmd": [
             "@symfony-scripts"
         ],
